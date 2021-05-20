@@ -54,4 +54,31 @@ public class UDPServer {
     public void closeConnections() {
         socket.close();
     }
+
+    public static void main(String[] args) {
+        UDPServer udpServer = new UDPServer();
+
+        int port = 3080;
+
+        if(args.length > 1)
+            System.out.println("Too many arguments. Using default port (3080)");
+        else if(args.length < 1)
+            System.out.println("No port given. Using default port (3080)");
+        else {
+            try{
+                int tmp_port = Integer.parseInt(args[0]);
+                if(tmp_port > 65535 || tmp_port < 1)
+                    System.out.println("Given integer value is not a valid port. Using default port (3080)");
+                else if(tmp_port < 1024)
+                    System.out.println("Given port is a system port. Using default port (3080)");
+                else
+                    port = tmp_port;
+            }
+            catch (NumberFormatException ex){
+                System.out.println("Given argument wasn't an integer");
+            }
+        }
+
+        udpServer.start(port);
+    }
 }
