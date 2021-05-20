@@ -2,7 +2,6 @@ package tcp;
 
 import java.io.*;
 import java.net.*;
-import java.util.Arrays;
 
 public class TCPClient {
     private Socket clientSocket;
@@ -27,7 +26,7 @@ public class TCPClient {
 
     public void send() {
         long startTime = System.nanoTime();
-        for (int i = 0; i <= 1000000; i++) sendNum(i);
+        for (int i = 0; i <= 1000; i++) sendNum(i);
         long endTime = System.nanoTime();
         System.out.println("Message sent. Took " + (endTime - startTime)/1000000000.0 + "s.");
     }
@@ -41,16 +40,6 @@ public class TCPClient {
         }
     }
 
-    private static boolean isValidIP(String ip) {
-        String[] groups = ip.split("\\.");
-        if (groups.length != 4) return false;
-        try {
-            return Arrays.stream(groups).filter(s -> s.length() > 1 && s.startsWith("0"))
-                    .map(Integer::parseInt).filter(i -> (i >= 0 && i <= 255)).count() == 4;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
 
     public static void main(String[] args) {
         int port = 3080;
@@ -63,10 +52,7 @@ public class TCPClient {
             System.out.println("Port or IP missing. Using default ip (127.0.0.1) and port (3080)");
         else {
             ip = args[0];
-            if(!isValidIP(ip)) {
-                System.out.println("No valid IP detected. Interpreting first argument as name");
-                isIP = false;
-            }
+
             try {
                 int tmp_port = Integer.parseInt(args[1]);
                 if (tmp_port > 65535 || tmp_port < 1)
@@ -78,7 +64,7 @@ public class TCPClient {
             }
         }
 
-
+        System.out.println("Connecting to " + ip + ":" + port);
         TCPClient tcpClient = new TCPClient();
         tcpClient.connect(ip, port);
         tcpClient.send();

@@ -11,7 +11,6 @@ public class TCPServer {
     private Socket clientSocket;
     private DataInputStream readIn;
 
-
     /*
     Frage 1: Welcher Unterschied lässt sich bei der Ausführung der UDP- und der TCP-Variante feststellen?
     Antwort:

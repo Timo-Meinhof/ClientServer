@@ -30,12 +30,12 @@ public class UDPServer {
                         if (read == -1) break;
 
                         // Coherent check
-                        if (read != previous + 1 && previous != 1000000)
+                        if (read != previous + 1 && previous != 1000)
                             System.out.println("Error: Numbers not coherent! " + previous + " was followed by " + read + ".");
 
                         previous = read;
 
-                        if (read == 1000000) {
+                        if (read == 1000) {
                             System.out.println("A full set of numbers was received!");
                             previous = -1;
                         }
