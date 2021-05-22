@@ -13,12 +13,20 @@ public class TCPServer {
 
     /*
     Frage 1: Welcher Unterschied lässt sich bei der Ausführung der UDP- und der TCP-Variante feststellen?
+
     Antwort:
-            Die Ausführung bei TCP dauert bedeutend länger (~30min vs. 30s)
+            localhost:
+                Die Ausführung bei TCP dauert bedeutend länger (~30min vs. 30s)
+            Zwischen zwei Uni-Servern:
+                Die Ausführung ist bedeutend schneller als auf localhost
+                Die Ausführung bei TCP ist etwas schneller
 
     Frage 2: Welche Fehlermeldungen gibt Java aus, wenn Sie:
              -  versuchen, die Server-Applikationen zweimal auf dem gleichen Rechner zu starten
                 (TCP/TCP, UDP/UDP, TCP/UDP)? Warum?
+             - eine Client-Applikation mit dem Namen eines Computers als Server, den es nicht gibt, starten?
+             - die Client-Applikation mit dem Namen eines Rechners starten, auf dem der Server nicht läuft?
+
     Antwort: TCP/TCP
                 java.net.BindException: Address already in use: JVM_Bind
                 Es können niemals zwei TCP Server auf der gleichen Port laufen
@@ -28,15 +36,14 @@ public class TCPServer {
              TCP/UDP
                 Kein Problem/Fehler.
 
-            - eine Client-Applikation mit dem Namen eines Computers als Server, den es nicht gibt, starten?
-    Antwort: Fehler: java.net.UnknownHostException: Der angegebene Host ist unbekannt (macFlownowMcFlowneloo)
+            Fehler: java.net.UnknownHostException: Der angegebene Host (macFlownowMcFlowneloo) ist unbekannt
 
-            - die Client-Applikation mit dem Namen eines Rechners starten, auf dem der Server nicht läuft?
-    Antwort: UDP:
+            UDP:
              Sendet trotzdem. Wirft keine Fehler. Auf dem Server passiert logischerweise nichts :)
              TCP:
              Fehler: java.net.ConnectException: Connection refused: connect
 
+     Frage 3: TODO Kathrin <3
      */
 
     public void start(int port) {

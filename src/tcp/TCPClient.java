@@ -46,18 +46,17 @@ public class TCPClient {
         String ip = "127.0.0.1";
         boolean isIP = true;
 
-        if (args.length > 2)
-            System.out.println("Too many arguments. Using default ip (127.0.0.1) and port (3080)");
-        else if (args.length < 2)
-            System.out.println("Port or IP missing. Using default ip (127.0.0.1) and port (3080)");
-        else {
-            ip = args[0];
 
+        if (args.length > 2)
+            System.out.println("Too many arguments. Using default ip (" + ip + ") and port (" + port + ")");
+        else if (args.length < 2)
+            System.out.println("Port or IP missing. Using default ip (" + ip + ") and port (" + port + ")");
+        else {
             try {
                 int tmp_port = Integer.parseInt(args[1]);
                 if (tmp_port > 65535 || tmp_port < 1)
-                    System.out.println("Given integer value is not a valid port. Using default port (3080)");
-                else if (tmp_port < 1024) System.out.println("Given port is a system port. Using default port (3080)");
+                    System.out.println("Given integer value is not a valid port. Using default port (" + port + ")");
+                else if (tmp_port < 1024) System.out.println("Given port is a system port. Using default port (" + port + ")");
                 else port = tmp_port;
             } catch (NumberFormatException ex) {
                 System.out.println("Given argument wasn't an integer");
